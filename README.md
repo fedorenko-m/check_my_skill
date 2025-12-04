@@ -30,10 +30,13 @@
         cd terraform
         terraform init
         terraform fmt
+   
+   ## You can validate code with:
+   
         terraform validate
         tflint
 
-2. Creating resources:
+3. Creating resources:
 
         terraform apply -auto-approve -var "app_env=dev" -var "host_port=8080"
 
