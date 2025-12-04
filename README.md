@@ -53,7 +53,6 @@
 ## 2. ANSIBLE
 ## Project structure
 
-ansible/
 <img width="314" height="360" alt="изображение" src="https://github.com/user-attachments/assets/0aa9fcef-0d34-4e1d-80aa-1fe19353d6c2" />
 
 
