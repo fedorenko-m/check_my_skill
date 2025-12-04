@@ -1,11 +1,11 @@
 ---
 - name: Update apt cache
   ansible.builtin.apt:
-      update_cache: yes
-      cache_valid_time: 3600
+    update_cache: true
+    cache_valid_time: 3600
 
 - name: Set web packages list
-  set_fact:
+  ansible.builtin.set_fact:
     web_packages:
       - nginx
       - php-fpm
@@ -17,13 +17,13 @@
     update_cache: true
 
 - name: Ensure www-data user exists
-  user:
+  ansible.builtin.user:
     name: www-data
     state: present
   become: true
 
 - name: Ensure web root exists
-  file:
+  ansible.builtin.file:
     path: "{{ web_root }}"
     state: directory
     owner: www-data
