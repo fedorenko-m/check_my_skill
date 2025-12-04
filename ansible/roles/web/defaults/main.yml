@@ -1,4 +1,4 @@
 ---
-app_env: dev
+web_app_env: dev
 web_root: /var/www/html
-nginx_conf: /etc/nginx/sites-available/default
+web_nginx_conf: /etc/nginx/sites-available/default
