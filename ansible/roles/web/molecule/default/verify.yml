@@ -1,10 +1,10 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
-- name: Verify
+- name: Verify role behavior
   hosts: all
   gather_facts: false
+
   tasks:
-  - name: Example assertion
-    ansible.builtin.assert:
-      that: true
+    - name: Verify Nginx is installed
+      ansible.builtin.assert:
+        that:
+          - "'nginx' in ansible_facts.packages"

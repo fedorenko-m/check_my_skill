@@ -6,8 +6,7 @@
     - name: Ensure www-data user exists
       ansible.builtin.user:
         name: www-data
-        shell: /sbin/nologin
-        
+        shell: /sbin/nologin   
     - name: Ensure web root exists
       ansible.builtin.file:
         path: /var/www/html
@@ -15,5 +14,5 @@
         mode: '0755'
 
     - name: Include web role
-      include_role:
+      ansible.builtin.include_role:
         name: web
