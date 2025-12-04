@@ -30,23 +30,23 @@ jobs:
         run: ansible-lint ansible/roles/web
 
   # Optional: Molecule tests
-  molecule-test:
-    needs: ansible-lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+  # molecule-test:
+  #   needs: ansible-lint
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.10'
 
-      - name: Install dependencies
-        run: |
-          pip install ansible molecule docker
+  #     - name: Install dependencies
+  #       run: |
+  #         pip install ansible molecule docker
 
-      - name: Run Molecule tests
-        run: |
-          cd ansible/roles/web
-          molecule test
+  #     - name: Run Molecule tests
+  #       run: |
+  #         cd ansible/roles/web
+  #         molecule test

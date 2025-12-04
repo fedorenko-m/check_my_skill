@@ -25,6 +25,10 @@ jobs:
       - name: Install tflint
         run: |
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+      
+      - name: Terraform init
+        run: terraform init
+        working-directory: terraform
 
       - name: Terraform fmt check
         run: terraform fmt -check -recursive
@@ -36,10 +40,6 @@ jobs:
 
       - name: TFLint check
         run: tflint
-        working-directory: terraform
-
-      - name: Terraform init
-        run: terraform init
         working-directory: terraform
 
       - name: Terraform plan

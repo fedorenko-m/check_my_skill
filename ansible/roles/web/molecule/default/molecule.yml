@@ -1,0 +1,17 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: quay.io/centos/centos:stream8
+    pre_build_image: true
+    environment:
+      web_app_env: "dev"
+    dns_servers:
+      - 8.8.8.8
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

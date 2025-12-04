@@ -16,7 +16,7 @@ server {
 
     location /healthz {
         default_type application/json;
-        return 200 '{"status":"ok","service":"nginx","env":"{{ app_env }}"}';
+        return 200 '{"status":"ok","service":"nginx","env":"{{ web_app_env }}"}';
     }
 
     access_log /var/log/nginx/access.log;

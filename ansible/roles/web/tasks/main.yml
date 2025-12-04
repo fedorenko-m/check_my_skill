@@ -1,4 +1,36 @@
 ---
+- name: Update apt cache
+  ansible.builtin.apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+- name: Set web packages list
+  set_fact:
+    web_packages:
+      - nginx
+      - php-fpm
+
+- name: Install web server and PHP
+  ansible.builtin.apt:
+    name: "{{ web_packages }}"
+    state: present
+    update_cache: true
+
+- name: Ensure www-data user exists
+  user:
+    name: www-data
+    state: present
+  become: true
+
+- name: Ensure web root exists
+  file:
+    path: "{{ web_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  become: true
+
 - name: Deploy index.php template
   ansible.builtin.template:
     src: index.php.j2
@@ -6,7 +38,7 @@
     owner: www-data
     group: www-data
     mode: '0644'
-  notify: Restart PHP-FPM
+  notify: Restart php-fpm
 
 - name: Deploy nginx.conf template
   ansible.builtin.template:
@@ -15,7 +47,7 @@
     owner: root
     group: root
     mode: '0644'
-  notify: Restart Nginx
+  notify: Restart nginx
 
 - name: Ensure Logrotate Configuration for Nginx
   ansible.builtin.copy:
@@ -37,4 +69,4 @@
               systemctl reload nginx > /dev/null 2>/dev/null || true
           endscript
       }
-  notify: Restart Nginx
+  notify: Restart nginx
