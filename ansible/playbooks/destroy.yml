@@ -1,0 +1,30 @@
+- hosts: localhost
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Stop nginx service
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+
+    - name: Stop php-fpm service
+      service:
+        name: php7.4-fpm   
+        state: stopped
+        enabled: no
+
+    - name: Remove index.php
+      file:
+        path: /var/www/html/index.php
+        state: absent
+
+    - name: Remove nginx config
+      file:
+        path: /etc/nginx/conf.d/default.conf
+        state: absent
+
+    - name: Remove logrotate config for nginx
+      file:
+        path: /etc/logrotate.d/nginx
+        state: absent
