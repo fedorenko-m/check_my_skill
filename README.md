@@ -1,3 +1,9 @@
+## Ansible CI
+<img width="1524" height="827" alt="изображение" src="https://github.com/user-attachments/assets/c13026a0-58d3-4a79-94fe-e105fb02e9a6" />
+## Terraform CI
+<img width="1520" height="772" alt="изображение" src="https://github.com/user-attachments/assets/76155198-5040-4901-afdb-d27e33892b39" />
+
+
 ## 1.TERRAFORM
 ## Project structure
 
