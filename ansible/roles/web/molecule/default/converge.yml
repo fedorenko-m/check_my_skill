@@ -17,4 +17,4 @@
 
     - name: Include web role
       ansible.builtin.include_role:
-        name: web 
+        name: web
