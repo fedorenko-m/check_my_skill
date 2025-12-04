@@ -54,38 +54,48 @@
 ## Project structure
 
 ansible/
-├── inventory/
-│   └── containers.ini      # Inventory for local deployment
-├── playbooks/
-│   └── site.yml            # Main playbook to deploy web role
-│   └── destroy.yml         # Playbook to stop services and clean up
-├── roles/
-│   └── web/
-│       ├── defaults/
-│       │   └── main.yml   # Default variables (app_env, paths, container names)
-│       ├── handlers/
-│       │   └── main.yml   # Handlers for restarting services
-│       ├── tasks/
-│       │   └── main.yml   # Main tasks: deploy Nginx, PHP-FPM, logrotate
-│       └── templates/
-│           ├── index.php.j2
-│           └── nginx.conf.j2
+├── inventory
+│   └── containers.ini
+├── playbooks
+│   ├── destroy.yml
+│   └── site.yml
+└── roles
+    └── web
+        ├── defaults
+        │   └── main.yml
+        ├── handlers
+        │   └── main.yml
+        ├── molecule
+        │   └── default
+        │       ├── converge.yml
+        │       ├── molecule.yml
+        │       └── verify.yml
+        ├── tasks
+        │   └── main.yml
+        └── templates
+            ├── index.php.j2
+            └── nginx.conf.j2
 
+## Requirements:
 
-ansible/
-├── inventory/
-│   └── containers.ini      # Inventory for local deployment
-├── playbooks/
-│   └── site.yml            # Main playbook to deploy web role
-│   └── destroy.yml         # Playbook to stop services and clean up
-├── roles/
-│   └── web/
-│       ├── defaults/
-│       │   └── main.yml   # Default variables (app_env, paths, container names)
-│       ├── handlers/
-│       │   └── main.yml   # Handlers for restarting services
-│       ├── tasks/
-│       │   └── main.yml   # Main tasks: deploy Nginx, PHP-FPM, logrotate
-│       └── templates/
-│           ├── index.php.j2
-│           └── nginx.conf.j2
+- Linux environment (Ubuntu/Debian recommended)
+- Ansible >= 2.13
+- Molecule >= 5
+- Docker (for Molecule scenarios)
+
+## Run playbook manually on a local VM
+    ansible-playbook -i ansible/inventory/containers.ini ansible/playbooks/site.yml
+
+## Verify:
+
+    systemctl status nginx
+    php -v
+    ls -l /var/www/html/index.php
+
+## Ansible Lint:
+
+    ansible-lint ansible/roles/web
+
+## If you want to revert changes
+
+    ansible-playbook -i ansible/inventory/containers.ini ansible/playbooks/destroy.yml
