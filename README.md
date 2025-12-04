@@ -27,26 +27,26 @@
 
 1. Commands for initialization:
 
-    cd terraform
-    terraform init
-    terraform fmt
-    terraform validate
-    tflint
+        cd terraform
+        terraform init
+        terraform fmt
+        terraform validate
+        tflint
 
 2. Creating resources:
 
-    terraform apply -auto-approve -var "app_env=dev" -var "host_port=8080"
+        terraform apply -auto-approve -var "app_env=dev" -var "host_port=8080"
 
 # The ensure_deploy.sh script will create deploy/ and the basic index.php and nginx.conf files.
 # null_resource + script are executed only when app_env changes.
 
 3. Then you can check docker containers and helthcheck:
 
-    docker ps
-    curl http://localhost:8080/
-    curl http://localhost:8080/healthz
+        docker ps
+        curl http://localhost:8080/
+        curl http://localhost:8080/healthz
 
-4. If you need to delete resources:
+5. If you need to delete resources:
  
     terraform destroy -auto-approve
 
@@ -54,27 +54,8 @@
 ## Project structure
 
 ansible/
-├── inventory
-│   └── containers.ini
-├── playbooks
-│   ├── destroy.yml
-│   └── site.yml
-└── roles
-    └── web
-        ├── defaults
-        │   └── main.yml
-        ├── handlers
-        │   └── main.yml
-        ├── molecule
-        │   └── default
-        │       ├── converge.yml
-        │       ├── molecule.yml
-        │       └── verify.yml
-        ├── tasks
-        │   └── main.yml
-        └── templates
-            ├── index.php.j2
-            └── nginx.conf.j2
+<img width="314" height="360" alt="изображение" src="https://github.com/user-attachments/assets/0aa9fcef-0d34-4e1d-80aa-1fe19353d6c2" />
+
 
 ## Requirements:
 
